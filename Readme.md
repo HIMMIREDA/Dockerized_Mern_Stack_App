@@ -41,6 +41,6 @@
     docker build -t goals-node-frontend .
 
     # run frontend container
-    docker run --name goals-app-frontend --network goals-net --rm -d -p 3000:3000 -it -v "$(pwd):/app" -v /app/node_modules goals-node-frontend
+    docker run --name goals-app-frontend --rm -d -p 3000:3000 -it -v "$(pwd)/src:/app/src" -v /app/node_modules goals-node-frontend
 
 ```
