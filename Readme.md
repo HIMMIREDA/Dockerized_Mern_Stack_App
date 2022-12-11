@@ -28,10 +28,10 @@
     docker run --name mongodb --network goals-net --env-file=.env -d --rm -v mongo-volume:/data/db  mongo
     
     # build backend image 
-    docker build -t goals-node .
+    docker build -t goals-node-backend .
 
     # run node js backend container
-    docker run --name goals-app --network goals-net --env-file=.env -d --rm -p 80:80 -v goals-logs:/app/logs -v "$(pwd):/app" -v /app/node_modules   goals-node
+    docker run --name goals-app-backend --network goals-net --env-file=.env -d --rm -p 80:80 -v goals-logs:/app/logs -v "$(pwd):/app" -v /app/node_modules goals-node-backend
 
     ###################
     
