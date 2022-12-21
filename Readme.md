@@ -50,7 +50,7 @@
 ### 2. using docker compose:
 
 ```bash
-docker-compose up -d # running containers
+    docker-compose up -d # running containers
 ```
 
 ```bash
