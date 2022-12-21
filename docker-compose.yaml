@@ -1,0 +1,40 @@
+version: '3.8'
+# no need to add containers to the same network bc docker-compose create a default network
+services:
+  mongodb:
+    image: "mongo"
+    volumes:
+      - mongo-volume:/data/db
+    env_file:
+      - ./backend/.env
+
+  backend:
+    build: ./backend
+    env_file:
+      - ./backend/.env
+    ports:
+      - 80:80
+    depends_on:
+      - mongodb
+    volumes:
+      - /app/node_modules
+      - goals-logs:/app/logs
+      - ./backend:/app
+
+  frontend:
+    build: ./frontend
+    ports:
+      - 3000:3000
+
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./frontend/src:/app/src
+      - /app/node_modules
+
+    depends_on:
+      - backend
+
+volumes:
+  mongo-volume:
+  goals-logs:
